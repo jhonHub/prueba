@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPermisorolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPermisorolEmpty}" rendered="#{permisorolController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{permisorolController.items.rowCount > 0}">
+                    <h:outputText value="#{permisorolController.pagination.pageFirstItem + 1}..#{permisorolController.pagination.pageLastItem + 1}/#{permisorolController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{permisorolController.previous}" value="#{bundle.Previous} #{permisorolController.pagination.pageSize}" rendered="#{permisorolController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{permisorolController.next}" value="#{bundle.Next} #{permisorolController.pagination.pageSize}" rendered="#{permisorolController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{permisorolController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPermisorolTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPermisorolTitle_permiso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.permiso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPermisorolTitle_rol}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rol}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{permisorolController.prepareView}" value="#{bundle.ListPermisorolViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{permisorolController.prepareEdit}" value="#{bundle.ListPermisorolEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{permisorolController.destroy}" value="#{bundle.ListPermisorolDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{permisorolController.prepareCreate}" value="#{bundle.ListPermisorolCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPermisorolIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

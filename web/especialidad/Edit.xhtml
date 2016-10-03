@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEspecialidadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEspecialidadLabel_idEspecialidad}" for="idEspecialidad" />
+                    <h:inputText id="idEspecialidad" value="#{especialidadController.selected.idEspecialidad}" title="#{bundle.EditEspecialidadTitle_idEspecialidad}" required="true" requiredMessage="#{bundle.EditEspecialidadRequiredMessage_idEspecialidad}"/>
+                    <h:outputLabel value="#{bundle.EditEspecialidadLabel_nombreEspecialidad}" for="nombreEspecialidad" />
+                    <h:inputText id="nombreEspecialidad" value="#{especialidadController.selected.nombreEspecialidad}" title="#{bundle.EditEspecialidadTitle_nombreEspecialidad}" required="true" requiredMessage="#{bundle.EditEspecialidadRequiredMessage_nombreEspecialidad}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{especialidadController.update}" value="#{bundle.EditEspecialidadSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEspecialidadViewLink}"/>
+                <br />
+                <h:commandLink action="#{especialidadController.prepareList}" value="#{bundle.EditEspecialidadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEspecialidadIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

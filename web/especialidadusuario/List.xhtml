@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEspecialidadusuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEspecialidadusuarioEmpty}" rendered="#{especialidadusuarioController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{especialidadusuarioController.items.rowCount > 0}">
+                    <h:outputText value="#{especialidadusuarioController.pagination.pageFirstItem + 1}..#{especialidadusuarioController.pagination.pageLastItem + 1}/#{especialidadusuarioController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{especialidadusuarioController.previous}" value="#{bundle.Previous} #{especialidadusuarioController.pagination.pageSize}" rendered="#{especialidadusuarioController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{especialidadusuarioController.next}" value="#{bundle.Next} #{especialidadusuarioController.pagination.pageSize}" rendered="#{especialidadusuarioController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{especialidadusuarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEspecialidadusuarioTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEspecialidadusuarioTitle_especialidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.especialidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEspecialidadusuarioTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{especialidadusuarioController.prepareView}" value="#{bundle.ListEspecialidadusuarioViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{especialidadusuarioController.prepareEdit}" value="#{bundle.ListEspecialidadusuarioEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{especialidadusuarioController.destroy}" value="#{bundle.ListEspecialidadusuarioDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{especialidadusuarioController.prepareCreate}" value="#{bundle.ListEspecialidadusuarioCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEspecialidadusuarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEtapaordenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEtapaordenLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{etapaordenController.selected.descripcion}" title="#{bundle.CreateEtapaordenTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateEtapaordenLabel_etapa}" for="etapa" />
+                    <h:selectOneMenu id="etapa" value="#{etapaordenController.selected.etapa}" title="#{bundle.CreateEtapaordenTitle_etapa}" required="true" requiredMessage="#{bundle.CreateEtapaordenRequiredMessage_etapa}">
+                        <f:selectItems value="#{etapaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEtapaordenLabel_ordendeservicio}" for="ordendeservicio" />
+                    <h:selectOneMenu id="ordendeservicio" value="#{etapaordenController.selected.ordendeservicio}" title="#{bundle.CreateEtapaordenTitle_ordendeservicio}" required="true" requiredMessage="#{bundle.CreateEtapaordenRequiredMessage_ordendeservicio}">
+                        <f:selectItems value="#{ordendeservicioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{etapaordenController.create}" value="#{bundle.CreateEtapaordenSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{etapaordenController.prepareList}" value="#{bundle.CreateEtapaordenShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEtapaordenIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

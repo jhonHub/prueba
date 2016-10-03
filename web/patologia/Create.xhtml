@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePatologiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePatologiaLabel_idPatologia}" for="idPatologia" />
+                    <h:inputText id="idPatologia" value="#{patologiaController.selected.idPatologia}" title="#{bundle.CreatePatologiaTitle_idPatologia}" required="true" requiredMessage="#{bundle.CreatePatologiaRequiredMessage_idPatologia}"/>
+                    <h:outputLabel value="#{bundle.CreatePatologiaLabel_nombrePatologia}" for="nombrePatologia" />
+                    <h:inputText id="nombrePatologia" value="#{patologiaController.selected.nombrePatologia}" title="#{bundle.CreatePatologiaTitle_nombrePatologia}" required="true" requiredMessage="#{bundle.CreatePatologiaRequiredMessage_nombrePatologia}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{patologiaController.create}" value="#{bundle.CreatePatologiaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{patologiaController.prepareList}" value="#{bundle.CreatePatologiaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePatologiaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

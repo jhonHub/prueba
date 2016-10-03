@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPatologiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPatologiaLabel_idPatologia}" for="idPatologia" />
+                    <h:inputText id="idPatologia" value="#{patologiaController.selected.idPatologia}" title="#{bundle.EditPatologiaTitle_idPatologia}" required="true" requiredMessage="#{bundle.EditPatologiaRequiredMessage_idPatologia}"/>
+                    <h:outputLabel value="#{bundle.EditPatologiaLabel_nombrePatologia}" for="nombrePatologia" />
+                    <h:inputText id="nombrePatologia" value="#{patologiaController.selected.nombrePatologia}" title="#{bundle.EditPatologiaTitle_nombrePatologia}" required="true" requiredMessage="#{bundle.EditPatologiaRequiredMessage_nombrePatologia}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{patologiaController.update}" value="#{bundle.EditPatologiaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPatologiaViewLink}"/>
+                <br />
+                <h:commandLink action="#{patologiaController.prepareList}" value="#{bundle.EditPatologiaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPatologiaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
